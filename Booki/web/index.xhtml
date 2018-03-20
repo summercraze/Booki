@@ -14,7 +14,7 @@
                 <h:inputText id="title" value="#{seachTitle.title}"/>
             </h:panelGrid>
             <!--Use command button-->
-            <h:commandButton value="Search"/>
+            <h:commandButton value="Search" action="#{seachTitle.processSearch()}"/>
         </h:form>
     </h:body>
 </html>
