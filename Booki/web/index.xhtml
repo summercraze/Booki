@@ -11,12 +11,12 @@
             <h1>Search For New Book</h1>
             <!---Use h:panelGrid-->
             <h:panelGrid columns = "2" style="color:green">
-                <h:outputLabel value = "Title"/>
+                <h:outputLabel value = "Title:"/>
                 <h:inputText id="title" value="#{searchBooks.title}"/>
                 
             </h:panelGrid>
             <!--Use command button-->
-            <h:commandButton value="Add Book" action="#{searchBooks.processSearch()}">
+            <h:commandButton id="confirm" value="Add Book" action="#{searchBooks.processSearch()}">
             <f:setPropertyActionListener target="#{seachTitle.title}" value="#{searchBooks.title}" />
              </h:commandButton>
         </h:form>
