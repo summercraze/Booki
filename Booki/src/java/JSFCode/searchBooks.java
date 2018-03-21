@@ -6,27 +6,27 @@
 package JSFCode;
 
 import SQLCode.SQLConnector;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.SQLException;
+import javax.inject.Named;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Rong
  */
-@Named(value = "seachTitle")
-@SessionScoped
-public class seachTitle implements Serializable 
-{
+@Named(value = "searchBooks")
+@ViewScoped
+public class searchBooks implements Serializable{
+
     private String title;
 
     /**
      * Creates a new instance of seachTitle
      */
-    public seachTitle() 
+    public searchBooks() 
     {
-    } 
+    }
     public void setTitle(String title)
     {
         this.title = title;
@@ -35,4 +35,16 @@ public class seachTitle implements Serializable
     {
         return title;
     }
+    public String processSearch() throws ClassNotFoundException, SQLException
+    {
+        if(SQLConnector.checkTitle(title))
+        {
+             return "viewBook";
+        }
+        else
+        {
+            return "addBook";
+        }
+    }
+    
 }
