@@ -13,16 +13,18 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+
         <h:form>
             <h2>
-                <h:outputFormat value="The book {0} does exit,would you like to view it?">
-                    <f:param value="#{seachTitle.title}" />
-                </h:outputFormat>
+              <h:outputFormat value="The book {0} does exist,would you like to view it?">
+	      <f:param value="#{seachTitle.title}" />
+               </h:outputFormat>
             </h2>
              <h:panelGrid columns = "2" style="color:green">
                  <h:commandButton value="View Book"/>
-                 <h:commandButton value="Back"/>
+                 <h:commandButton value="Back" action="index"/>
              </h:panelGrid>    
         </h:form>
+        
     </body>
 </html>
