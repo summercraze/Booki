@@ -7,7 +7,8 @@ package JavaCode;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Map;
+import javax.faces.context.FacesContext;
 /**
  *
  * @author Rong
@@ -24,4 +25,10 @@ public class usefuleCode
    {
      return sentence.replace("'", "''");
    }
+   public static String getParam(FacesContext fc,String param)
+   {
+
+        Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+        return params.get(param);		
+    }
 }

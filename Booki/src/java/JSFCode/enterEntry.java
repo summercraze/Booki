@@ -17,7 +17,7 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author Rong
  */
-@Named(value = "enterEntry")
+@Named(value="enterEntry")
 @RequestScoped
 public class enterEntry 
 {
