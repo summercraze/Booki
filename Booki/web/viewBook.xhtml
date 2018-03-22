@@ -21,7 +21,9 @@ and open the template in the editor.
                </h:outputFormat>
             </h2>
              <h:panelGrid columns = "2" style="color:green">
-                 <h:commandButton id="confirm" value="View Book" action="bookViewer"/>
+                 <h:button id="confirm" value="View Book" outcome="bookViewer">
+                     <f:param name="viewName" value="#{seachTitle.title}"/>
+                 </h:button>
                  <h:commandButton id="back" value="Back" action="index"/>
              </h:panelGrid>    
         </h:form>

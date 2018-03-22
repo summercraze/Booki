@@ -5,34 +5,34 @@
  */
 package JSFCode;
 
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-import java.io.Serializable;
 
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
 
 /**
  *
  * @author Rong
  */
-@Named(value="seachTitle")
-@SessionScoped
-public class seachTitle implements Serializable 
+@Named(value="viewEntry")
+@RequestScoped
+public class viewEntry implements Serializable
 {
     private String title;
-
     /**
-     * Creates a new instance of seachTitle
+     * Creates a new instance of viewEntry
      */
-    public seachTitle() 
+    public viewEntry()
     {
-    } 
-    public String getTitle()
-    {
-        return title;
+        
     }
     public void setTitle(String title)
     {
         this.title = title;
     }
-    
+    public String getTitle()
+    {
+        return title;
+    }
+	
 }

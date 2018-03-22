@@ -15,9 +15,10 @@ import javax.faces.view.ViewScoped;
  *
  * @author Rong
  */
-@Named(value = "searchBooks")
+@Named(value="searchBooks")
 @ViewScoped
-public class searchBooks implements Serializable{
+public class searchBooks implements Serializable 
+{
 
     private String title;
 
