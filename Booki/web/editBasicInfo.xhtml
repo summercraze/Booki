@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Edit Basic Information</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div>
+            <h:form>
+                <h3>
+                    <h:outputFormat value="Edit Basic Information of {0}">
+                        <f:param value="#{basicInfoEdit.getTitle()}" />
+                    </h:outputFormat>
+                </h3>
+                <h:panelGrid columns = "2" style="color:green">
+                    <h:outputLabel value = "Book Title:"/>
+                    <h:inputText id="title" value="" />
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "Book Subtitle:"/>
+                        <h:inputText id="subtitle" value="" />
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "ISBN:"/>
+                        <h:inputText id="isbn" value ="" />
+                </h:panelGrid>
+                <h:outputText value = "Author:" style ="color:green"/>
+                <h:panelGrid columns = "6" style="color:green">
+                        <h:outputLabel value = "1."/>
+                        <h:inputText id="author1" value=""/>
+                        <h:outputLabel value = "2."/>
+                        <h:inputText id="author2" value=""/>
+                        <h:outputLabel value = "3."/>
+                        <h:inputText id="author3" value=""/>
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "Translator:"/>
+                        <h:inputText id="translator" value=""/>
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "Price:"/>
+                        <h:inputText id="price" value=""/>
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "Publisher:"/>
+                        <h:inputText id="publisher" value=""/>
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "Date of Publishing:"/>
+                        <h:inputText id="pubDate" value=""/>
+                </h:panelGrid>
+                <h:outputText value = "Type of Book:" style ="color:green"/>
+                 <h:panelGrid columns = "2" style="color:green">
+                     <h:selectOneRadio id="coverType" value="">
+                         <f:selectItem itemValue="Paperback" itemLabel="PaperBack"/>
+                         <f:selectItem itemValue="Hardcover" itemLabel="Hardcover"/>
+                     </h:selectOneRadio>
+                </h:panelGrid> 
+                <h:panelGrid columns = "2" style="color:green">
+                        <h:outputLabel value = "Pages:"/>
+                        <h:inputText id="pages" value=""/>
+                </h:panelGrid>
+                <h:panelGrid columns = "2" style="color:green">
+                 <h:button id="confirm" value="View Book" outcome="bookViewer">
+                     <f:param name="viewName" value=""/>
+                 </h:button>
+                 <h:commandButton id="back" value="Back to Search" action="index"/>
+             </h:panelGrid>    
+                </h:form>  
+        </div>
+    </body>
+</html>

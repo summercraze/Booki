@@ -29,7 +29,9 @@ and open the template in the editor.
                <h:panelGrid columns = "2" style="color:green">
                <h:outputFormat value="Basic Information">
                </h:outputFormat>
-               <h:commandButton id="confirmEditBI" value="Edit"/>
+                   <h:commandButton id="confirmEditBI" value="Edit" action="#{basicInfoEdit.getResponse()}">
+               <f:param name="title" value="#{viewEntry.title}" />
+               </h:commandButton>
                </h:panelGrid>
                <h:panelGrid columns = "1" style="color:green">
                -----------------------------------------------------------------
