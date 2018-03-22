@@ -16,22 +16,22 @@ import javax.faces.context.FacesContext;
  *
  * @author Rong
  */
-public class usefuleCode 
+public class usefuleCode
 {
     public static java.sql.Date changeDate(String date) throws ParseException
     {
         DateFormat  dateformat = new  SimpleDateFormat ("MM/dd/yyyy");
-	java.util.Date formatDate = dateformat.parse(date);	
-	return new java.sql.Date( formatDate.getTime()); 
+	java.util.Date formatDate = dateformat.parse(date);
+	return new java.sql.Date( formatDate.getTime());
     }
-   public static String sqlStringReplacer(String sentence) 
+   public static String sqlStringReplacer(String sentence)
    {
      return sentence.replace("'", "''");
    }
     public static String createTitle(String title,String subtitle)
    {
 	  return title+subtitle;
-	   
+
    }
    public static String createAuthor(String author1,String author2,String author3)
    {
@@ -71,18 +71,15 @@ public class usefuleCode
 
 	  return(buildString.toString());
    }
-   public static String StringReplacer(String sentence) 
+   public static String StringReplacer(String sentence)
    {
      return sentence.replace("''", "'");
    }
-   public static String editContentPage(String sentence) 
+   public static String getParam(FacesContext fc,String parameter)
    {
-     String resultString = "";
-     String[] parts = sentence.split("\\*");
-     for(int i = 0; i<parts.length;i++)
-     {
-         resultString += parts[i] +"\n\n";
-     }
-     return resultString;
+
+        Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+        return params.get(parameter);
+
    }
 }

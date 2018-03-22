@@ -78,7 +78,7 @@ public class viewEntry
     }
     public String getContentPage()
     {
-        return editContentPage(viewBook.getContentPage());
+        return viewBook.getContentPage();
     }
     public String getBookInformation()
     {
