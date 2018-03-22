@@ -75,5 +75,20 @@ public class SQLConnector
                     sqlStringReplacer(book.getAboutAuthor()),
                     sqlStringReplacer(book.getContentPage()));
           return exist;
+       }
+    /**
+        * method to getInfo about a book
+        * @param title
+        * @return book
+        * @throws SQLException 
+        * @throws ClassNotFoundException 
+        */
+       static public Book getBookInfo(String title) 
+          throws ClassNotFoundException, SQLException {
+          if (connect() == false)
+             System.out.println("Fail to connect");
+
+          Book newBook = test.getBook(title);
+          return newBook;
        } 
 }

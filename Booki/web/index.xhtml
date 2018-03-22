@@ -16,7 +16,7 @@
                 
             </h:panelGrid>
             <!--Use command button-->
-            <h:commandButton id="confirm" value="Add Book" action="#{searchBooks.processSearch()}">
+            <h:commandButton id="confirm" value="Search" action="#{searchBooks.processSearch()}">
             <f:setPropertyActionListener target="#{seachTitle.title}" value="#{searchBooks.title}" />
              </h:commandButton>
         </h:form>
