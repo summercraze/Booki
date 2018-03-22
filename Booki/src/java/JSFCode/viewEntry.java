@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Named(value="viewEntry")
 @RequestScoped
-public class viewEntry implements Serializable
+public class viewEntry 
 {
     private String title;
     /**

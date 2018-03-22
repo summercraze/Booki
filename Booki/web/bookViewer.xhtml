@@ -13,12 +13,15 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>
+        <f:view>
+            <f:metadata>
+                 <f:viewParam name="viewName" value="#{viewEntry.title}" />
+            </f:metadata>
             <h:form>
             <h2>
                 <h:panelGrid columns = "1" style="color:green">
                <h:outputFormat value="{0}">
-                   <f:param value="#{seachTitle.title}" />
+                   <f:param value="#{viewEntry.title}" />
                </h:outputFormat>
                _________________________________________________________________
                </h:panelGrid>
@@ -96,6 +99,6 @@ and open the template in the editor.
                </h:outputFormat>
                </h:panelGrid>
             </h:form>
-        </div>
+        </f:view>
     </body>
 </html>
