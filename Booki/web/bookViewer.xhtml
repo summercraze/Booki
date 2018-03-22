@@ -13,12 +13,14 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>
+        <f:view>
+            <f:metadata>
+                 <f:viewParam name="viewName" value="#{viewEntry.title}" />
+            </f:metadata>
             <h:form>
             <h2>
                 <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="{0}">
-                   <f:param value="#{seachTitle.title}" />
+               <h:outputFormat value="#{viewEntry.title}">
                </h:outputFormat>
                _________________________________________________________________
                </h:panelGrid>
@@ -34,23 +36,41 @@ and open the template in the editor.
                </h:panelGrid>
             </h3>
                <h:panelGrid columns = "2" style="color:green">
+               <h:outputFormat value="Subtitle:">
+               </h:outputFormat>
+                   <h:outputFormat value="#{viewEntry.getSubtitle()}">
+               </h:outputFormat>
                <h:outputFormat value="ISBN:">
                </h:outputFormat>
-                   <h:outputFormat value="">
+                   <h:outputFormat value="#{viewEntry.getISBN()}">
                </h:outputFormat>
                <h:outputFormat value="Author:">
                </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getTitle()}">
+               <h:outputFormat value="#{viewEntry.getAuthors()}">
                </h:outputFormat>
                <h:outputFormat value="Translator:">
                </h:outputFormat>
+               <h:outputFormat value="#{viewEntry.getTranslator()}">
+               </h:outputFormat>
                <h:outputFormat value="Page:">
+               </h:outputFormat>
+               <h:outputFormat value="#{viewEntry.getPage()}">
                </h:outputFormat>
                <h:outputFormat value="Type of Cover:">
                </h:outputFormat>
+               <h:outputFormat value="#{viewEntry.getCoverType()}">
+               </h:outputFormat>
                <h:outputFormat value="Publisher:">
                </h:outputFormat>
+               <h:outputFormat value="#{viewEntry.getPublisher()}">
+               </h:outputFormat>
                <h:outputFormat value="Publishing Date:">
+               </h:outputFormat>
+               <h:outputFormat value="#{viewEntry.getPublisherDate()}">
+               </h:outputFormat>
+               <h:outputFormat value="Price:">
+               </h:outputFormat>
+               <h:outputFormat value="#{viewEntry.getPrice()}">
                </h:outputFormat>
                </h:panelGrid>
             <h3>
@@ -64,7 +84,7 @@ and open the template in the editor.
                </h:panelGrid>
                </h3>          
                <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="Content to go here">
+               <h:outputFormat value="#{viewEntry.getContentPage()}">
                </h:outputFormat>
                </h:panelGrid>
                <h3>
@@ -78,7 +98,7 @@ and open the template in the editor.
                </h:panelGrid>
                </h3>
                  <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="Content to go here">
+               <h:outputFormat value="#{viewEntry.getBookInformation()}">
                </h:outputFormat>
                </h:panelGrid>
                 <h3>
@@ -92,10 +112,11 @@ and open the template in the editor.
                </h:panelGrid>
                </h3>
                 <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="Content to go here">
+               <h:outputFormat value="#{viewEntry.getAuthorInfo()}">
                </h:outputFormat>
                </h:panelGrid>
+               <h:commandButton id="confirm" value="Go Back To Search" action="index"/>
             </h:form>
-        </div>
+        </f:view>
     </body>
 </html>
