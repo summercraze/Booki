@@ -177,7 +177,7 @@ public class SQLHelperMethod
     private static int insertBook(String title, String subtitle,
                     String isbn, String author1,  String author2,  String author3, 
                     String translator, double price,String publisher,Date publisherDate,String coverType,
-                    int page,String bookInfo,String aboutAuthor, Object contentPage)
+                    int page,String bookInfo,String aboutAuthor, String contentPage)
                                     throws SQLException, ClassNotFoundException 
     {
             Connection dbConnection = null;
@@ -351,4 +351,369 @@ public class SQLHelperMethod
        }
        return  book;
     }
+   /**
+         * this method update a title's basic info into the database
+         * @param title
+         * @param subtitle
+         * @param isbn
+         * @param author1
+         * @param author2
+         * @param author3
+         * @param translator
+         * @param price
+         * @param publisher
+         * @param publisherDate
+         * @param coverType
+         * @param page
+         * @return status
+         * @throws SQLException
+         * @throws ClassNotFoundException 
+         */
+        private static int updateBasicInfo(String title, String subtitle,
+                        String isbn, String author1,  String author2,  String author3, 
+                        String translator, double price,String publisher,Date publisherDate,String coverType,
+                        int page)
+                                        throws SQLException, ClassNotFoundException {
+                Connection dbConnection = null;
+                CallableStatement updateBookStatement = null;
+                int status = 2;
+
+                String insertTitlesql = "{call insertBasicInfo(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+                try {
+                        //connect and call function
+                        dbConnection = connect();
+                        updateBookStatement = dbConnection.prepareCall(insertTitlesql);
+
+                        //put the variable into the function to execute
+                        updateBookStatement.setString(1, title);
+                        updateBookStatement.setString(2, subtitle);
+                        updateBookStatement.setString(3, isbn);
+                        updateBookStatement.setString(4, author1);
+                        updateBookStatement.setString(5, author2);
+                        updateBookStatement.setString(6, author3);
+                        updateBookStatement.setString(7, (String) translator);
+                        updateBookStatement.setDouble(8, price);
+                        updateBookStatement.setString(9, publisher);
+                        updateBookStatement.setDate(10, publisherDate);
+                        updateBookStatement.setString(11, coverType);
+                        updateBookStatement.setInt(12, page);
+
+                        //get the output from the function
+                        updateBookStatement.registerOutParameter(13, java.sql.Types.INTEGER);
+                        // execute insertloginSqlstore procedure
+                        updateBookStatement.executeUpdate();
+                        //get the output and return it
+                        status = updateBookStatement.getInt(13);
+
+                } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+
+                } finally {
+                        if (updateBookStatement != null) {
+                                updateBookStatement.close();
+                        }
+
+                        if (dbConnection != null) {
+                                dbConnection.close();
+                        }
+                }
+                return status;
+        }
+
+    /**
+     * this method let SQLConnector insert title in database
+     * @param title
+     * @param subtitle
+     * @param isbn
+     * @param author1
+     * @param author2
+     * @param author3
+     * @param translator
+     * @param price
+     * @param publisher
+     * @param publisherDate
+     * @param coverType
+     * @param page
+     * @return boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
+    public boolean basicInfoUpdated(String title, String subtitle,
+                    String isbn, String author1,  String author2,  String author3, 
+                    String translator, double price,String publisher,Date publisherDate,String coverType,
+                    int page) 
+                                    throws ClassNotFoundException, SQLException {
+            int status;
+            status = updateBasicInfo(title,subtitle,isbn,author1,author2,author3,translator,
+                            price,publisher,publisherDate,coverType,page);
+            boolean result = false; 
+            if (status == 0)
+                    result = false;
+
+            if (status == 1)
+                    result = true;
+
+            return result;
+}
+    	   /**
+		 * this method update a title's basic info into the database
+		 * @param title
+		 * @param subtitle
+		 * @param isbn
+		 * @param author1
+		 * @param author2
+		 * @param author3
+		 * @param translator
+		 * @param price
+		 * @param publisher
+		 * @param publisherDate
+		 * @param coverType
+		 * @param page
+		 * @return status
+		 * @throws SQLException
+		 * @throws ClassNotFoundException 
+		 */
+		private static int updateContentPage(String title,String contentPage)
+						throws SQLException, ClassNotFoundException {
+			Connection dbConnection = null;
+			CallableStatement updateContentPageStatement = null;
+			int status = 2;
+
+			String insertContentsql = "{call insertcontentpage(?,?,?)}";
+			try {
+				//connect and call function
+				dbConnection = connect();
+				updateContentPageStatement = dbConnection.prepareCall(insertContentsql);
+
+				//put the variable into the function to execute
+				updateContentPageStatement.setString(1, title);
+				updateContentPageStatement.setString(2, contentPage);
+
+				//get the output from the function
+				updateContentPageStatement.registerOutParameter(3, java.sql.Types.INTEGER);
+				// execute insertloginSqlstore procedure
+				updateContentPageStatement.executeUpdate();
+				//get the output and return it
+				status = updateContentPageStatement.getInt(3);
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+
+			} finally {
+				if (updateContentPageStatement != null) {
+					updateContentPageStatement.close();
+				}
+
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			}
+			return status;
+		}
+
+/**
+ * this method let SQLConnector insert title in database
+ * @param title
+ * @param subtitle
+ * @param isbn
+ * @param author1
+ * @param author2
+ * @param author3
+ * @param translator
+ * @param price
+ * @param publisher
+ * @param publisherDate
+ * @param coverType
+ * @param page
+ * @return boolean
+ * @throws SQLException
+ * @throws ClassNotFoundException 
+ */
+public boolean contentPageUpdated(String title,String contentPage) 
+				throws ClassNotFoundException, SQLException {
+	int status;
+	status = updateContentPage(title, contentPage);
+	boolean result = false; 
+	if (status == 0)
+		result = false;
+
+	if (status == 1)
+		result = true;
+
+	return result;
+}
+/**
+	 * this method update a title's basic info into the database
+	 * @param title
+	 * @param subtitle
+	 * @param isbn
+	 * @param author1
+	 * @param author2
+	 * @param author3
+	 * @param translator
+	 * @param price
+	 * @param publisher
+	 * @param publisherDate
+	 * @param coverType
+	 * @param page
+	 * @return status
+	 * @throws SQLException
+	 * @throws ClassNotFoundException 
+	 */
+	private static int updateAuthorInfo(String title,String authorInfo)
+					throws SQLException, ClassNotFoundException {
+		Connection dbConnection = null;
+		CallableStatement updateAuthorStatement = null;
+		int status = 2;
+
+		String updateAuthrosql = "{call insertAuthor(?,?,?)}";
+		try {
+			//connect and call function
+			dbConnection = connect();
+			updateAuthorStatement = dbConnection.prepareCall(updateAuthrosql);
+
+			//put the variable into the function to execute
+			updateAuthorStatement.setString(1, title);
+			updateAuthorStatement.setString(2, authorInfo);
+
+			//get the output from the function
+			updateAuthorStatement.registerOutParameter(3, java.sql.Types.INTEGER);
+			// execute insertloginSqlstore procedure
+			updateAuthorStatement.executeUpdate();
+			//get the output and return it
+			status = updateAuthorStatement.getInt(3);
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		} finally {
+			if (updateAuthorStatement != null) {
+				updateAuthorStatement.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		return status;
+	}
+
+/**
+* this method let SQLConnector insert title in database
+* @param title
+* @param subtitle
+* @param isbn
+* @param author1
+* @param author2
+* @param author3
+* @param translator
+* @param price
+* @param publisher
+* @param publisherDate
+* @param coverType
+* @param page
+* @return boolean
+* @throws SQLException
+* @throws ClassNotFoundException 
+*/
+public boolean authorInfoUpdated(String title,String authorInfo) 
+			throws ClassNotFoundException, SQLException {
+int status;
+status = updateAuthorInfo(title, authorInfo);
+boolean result = false; 
+if (status == 0)
+	result = false;
+
+if (status == 1)
+	result = true;
+
+return result;
+}
+/**
+ * this method update a title's basic info into the database
+ * @param title
+ * @param subtitle
+ * @param isbn
+ * @param author1
+ * @param author2
+ * @param author3
+ * @param translator
+ * @param price
+ * @param publisher
+ * @param publisherDate
+ * @param coverType
+ * @param page
+ * @return status
+ * @throws SQLException
+ * @throws ClassNotFoundException 
+ */
+private static int updateBookInfo(String title,String bookInfo)
+				throws SQLException, ClassNotFoundException {
+	Connection dbConnection = null;
+	CallableStatement updateBookStatement = null;
+	int status = 2;
+
+	String updateAuthrosql = "{call insertBookInfo(?,?,?)}";
+	try {
+		//connect and call function
+		dbConnection = connect();
+		updateBookStatement = dbConnection.prepareCall(updateAuthrosql);
+
+		//put the variable into the function to execute
+		updateBookStatement.setString(1, title);
+		updateBookStatement.setString(2, bookInfo);
+
+		//get the output from the function
+		updateBookStatement.registerOutParameter(3, java.sql.Types.INTEGER);
+		// execute insertloginSqlstore procedure
+		updateBookStatement.executeUpdate();
+		//get the output and return it
+		status = updateBookStatement.getInt(3);
+
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+
+	} finally {
+		if (updateBookStatement != null) {
+			updateBookStatement.close();
+		}
+
+		if (dbConnection != null) {
+			dbConnection.close();
+		}
+	}
+	return status;
+}
+
+/**
+* this method let SQLConnector insert title in database
+* @param title
+* @param subtitle
+* @param isbn
+* @param author1
+* @param author2
+* @param author3
+* @param translator
+* @param price
+* @param publisher
+* @param publisherDate
+* @param coverType
+* @param page
+* @return boolean
+* @throws SQLException
+* @throws ClassNotFoundException 
+*/
+public boolean bookInfoUpdated(String title,String bookInfo) 
+		throws ClassNotFoundException, SQLException {
+int status;
+status = updateBookInfo(title,bookInfo);
+boolean result = false; 
+if (status == 0)
+result = false;
+
+if (status == 1)
+result = true;
+
+return result;
+}
 }

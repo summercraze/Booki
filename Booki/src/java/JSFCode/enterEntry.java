@@ -37,7 +37,7 @@ public class enterEntry
     private String bookInfo;
     private String aboutAuthor;
     private String contentPage;
-    private String status = "Nothing is stored";
+    private String status = "Nothing is updated.";
     /**
      * Creates a new instance of enterEntry
      */
@@ -184,7 +184,7 @@ public class enterEntry
     {
         if(addTitle(insertBook))
         {
-            status = title + " is now registered in the database";
+            status = "The book has been included in our database,you can come back and check it later.Thank you for your help!";
         }
         return "bookInsertStatus";
     }
