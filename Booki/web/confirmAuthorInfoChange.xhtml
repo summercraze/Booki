@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title>Author Information Changed?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div>
+            <h:form>
+            <h2>
+            <h:outputText escape ="false" style ="color:green"
+                          value ="#{authorInfoEdit.getStatus()}"/>
+            </h2>
+            <h:panelGrid columns = "1" style="color:green">
+                 <h:commandButton id="back" value="Back" action = "index"/>
+            </h:panelGrid>
+           
+        </h:form>
+        </div>
+    </body>
+</html>
