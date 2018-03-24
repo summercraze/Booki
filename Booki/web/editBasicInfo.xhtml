@@ -37,12 +37,12 @@ and open the template in the editor.
                                  value ="#{basicInfoEdit.isbn}" >
                     <f:validateLength minimum='10' maximum='13'/>
                     </h:inputText>
-                    <h:message for="isbn" style="color: red"/>
+                    <h:message for="isbn" id="isbnErrorMessage" style="color: red"/>
             </h:panelGrid>
             
             <!--This allow user to enter user-->
             <h:outputText value = "Author:" style ="color:green"/>
-            <h:panelGrid columns = "6" style="color:green">
+            <h:panelGrid columns = "7" style="color:green">
                     <h:outputLabel value = "1."/>
                     <h:inputText id="author1" 
                                  required="true"
@@ -55,6 +55,7 @@ and open the template in the editor.
                     <h:inputText id="author2" value="#{basicInfoEdit.author2}"/>
                     <h:outputLabel value = "3."/>
                     <h:inputText id="author3" value="#{basicInfoEdit.author3}"/>
+                    <h:message for="author1" id="author1ErrorMessage" style="color: red"/>
             </h:panelGrid>
             
             <!--This allow user to enter translator-->
@@ -73,7 +74,7 @@ and open the template in the editor.
                                  value="#{basicInfoEdit.price}">
                     <f:validateRegex pattern="(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?$"/>
                     </h:inputText>
-                    <h:message for="price" style="color: red"/>
+                    <h:message for="price" id="priceErrorMessage" style="color: red"/>
             </h:panelGrid>
             
             <!---This allow user to put in publisher-->
@@ -85,7 +86,7 @@ and open the template in the editor.
                                  value="#{basicInfoEdit.publisher}">
                     <f:validateLength minimum='3' maximum='500'/>
                     </h:inputText>
-                    <h:message for="publisher" style="color: red"/> 
+                    <h:message for="publisher" id="pubErrorMessage" style="color: red"/> 
             </h:panelGrid>
             
             <!---This allow user to enter date of publisher-->
@@ -98,7 +99,7 @@ and open the template in the editor.
                                  value="#{basicInfoEdit.publisherDate}">
                     <f:validateRegex pattern="[\d]{2}/[\d]{2}/[\d]{4}"/>
                     </h:inputText>
-                    <h:message for="pubDate" style="color: red"/>        
+                    <h:message for="pubDate" id="pubDateErrorMessage" style="color: red"/>        
             </h:panelGrid>
             
              <!---This allow user to enter type of book-->
@@ -110,7 +111,7 @@ and open the template in the editor.
                      <f:selectItem itemValue="Paperback" itemLabel="PaperBack"/>
                      <f:selectItem itemValue="Hardcover" itemLabel="Hardcover"/>
                  </h:selectOneRadio>
-                 <h:message for="coverType" style="color: red"/> 
+                 <h:message for="coverType" id="coverTypeErrorMessage" style="color: red"/> 
             </h:panelGrid> 
              
              <!---This allow user to enter page--> 
@@ -122,7 +123,7 @@ and open the template in the editor.
                                      value="#{basicInfoEdit.page}">
                     <f:validateRegex pattern="[1-9]\d{0,2}(,\d{3})*"/>
                     </h:inputText>
-                    <h:message for="pages" style="color: red"/> 
+                    <h:message for="pages" id="pagesErrorMessage" style="color: red"/> 
             </h:panelGrid> 
             
             <!--This allow user to sent information-->

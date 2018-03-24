@@ -30,7 +30,7 @@ This is the form where user could change the author information
             <h:inputTextarea id="editableContent" required="true"
                                  requiredMessage = "Author information is required."
                                  style ="width:400px;height:70px" value="#{authorInfoEdit.authorInfo}"/>
-            <h:message for="editableContent" style="color: red"/>  
+            <h:message for="editableContent" id="editableContentErrorMessage" style="color: red"/>  
             </h:panelGrid>
             
             <!--Confirm change-->
