@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+ * To search book give output
+ * this control index.xhtml
+ */
 package JSFCode;
 
 import SQLCode.SQLConnector;
@@ -19,7 +24,7 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class searchBooks implements Serializable 
 {
-
+    //variable used in this code
     private String title;
 
     /**
@@ -28,14 +33,33 @@ public class searchBooks implements Serializable
     public searchBooks() 
     {
     }
+    
+    /**
+    * method to set title 
+    * @param title  String
+    */
     public void setTitle(String title)
     {
         this.title = title;
     }
+    
+    /**
+    * method to get title
+    * @return title String
+    */
     public String getTitle()
     {
         return title;
     }
+    
+    /**
+    * method to direct the html page to be shown and perform database
+    * @return viewBook String
+    * @return addBook String
+    * @throws ClassNotFoundException
+    * @throws SQLException
+    * @throws ParseException
+    */
     public String processSearch() throws ClassNotFoundException, SQLException
     {
         if(SQLConnector.checkTitle(title))

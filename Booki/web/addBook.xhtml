@@ -4,6 +4,11 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--
+This is the xhtml file that shows a page which 
+allow user to add a new page/new book if the search
+shows that the book is not in the database
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -15,13 +20,16 @@ and open the template in the editor.
     <body>
        <h:form>
             <h2>
-               <h:outputFormat value="The book {0} does not exist,would you like add it?">
-	      <f:param value="#{seachTitle.title}" />
+                <!--This is the message that shows the book is not in the database-->
+               <h:outputFormat value="The book {0} does not exist,would you like add it?" style="color:green">
+	       <f:param value="#{seachTitle.title}" />
                </h:outputFormat>
             </h2>
-             <h:panelGrid columns = "2" style="color:green">
+             <!---This is the option, user could press add book to add the book
+             in the database or could press back to go back to the search page-->
+             <h:panelGrid columns = "2">
                  <h:commandButton id="confirm" value="Add Book" action="addEntry"/>
-                 <h:commandButton id ="back" value="Back" action = "index"/>
+                 <h:commandButton id ="back" value="Back To Search" action = "index"/>
              </h:panelGrid>    
         </h:form>
     </body>

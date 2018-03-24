@@ -36,13 +36,14 @@ public class SQLConnector
           }
           return test.getConnection();
        }
-        /**
-        * method to check title in the database
-        * @param title  first name
-        * @return            true or false
-        * @throws SQLException 
-        * @throws ClassNotFoundException 
-        */
+     
+       /**
+     * this method let SQLConnector insert title in database
+     * @param title String
+     * @return exist boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
        static public boolean checkTitle(String title) 
           throws ClassNotFoundException, SQLException 
        {
@@ -53,10 +54,11 @@ public class SQLConnector
           exist = test.confirmTitle(title);
           return exist;
        } 
-        /**
+        
+       /**
         * method to add title in the database
-        * @param book
-        * @return            true or false
+        * @param book Book
+        * @return exist boolean
         * @throws SQLException 
         * @throws ClassNotFoundException 
         */
@@ -76,11 +78,12 @@ public class SQLConnector
                     sqlStringReplacer(book.getContentPage()));
           return exist;
        }
-    /**
-        * method to getInfo about a book
-        * @param title
-        * @return book
-        * @throws SQLException 
+        
+       /**
+        * this method get the book info 
+        * @param title String
+        * @return book Book
+        * @throws SQLException
         * @throws ClassNotFoundException 
         */
        static public Book getBookInfo(String title) 
@@ -91,128 +94,90 @@ public class SQLConnector
           Book newBook = test.getBook(title);
           return newBook;
        } 
-          /**
-	    * method to add title in the database
-	    * @param title
-	    * @param subtitle
-	    * @param isbn
-	    * @param author1
-	    * @param author2
-	    * @param author3
-	    * @param translator
-	    * @param price
-	    * @param publisher
-	    * @param publisherDate
-	    * @param coverType
-	    * @param page
-	    * @param bookInfo
-	    * @param aboutAuthor
-	    * @param contentPage
-	    * @return            true or false
-	    * @throws SQLException 
-	    * @throws ClassNotFoundException 
-	    */
-	   static public boolean editBasicInfo(String title, String subtitle,
-				String isbn, String author1,  String author2,  String author3, 
-				String translator, double price,String publisher,Date publisherDate,String coverType,
-				int page) 
-	      throws ClassNotFoundException, SQLException {
-	      boolean exist = false;
-	      if (connect() == false)
-	         System.out.println("Fail to connect");
-	   
-	      exist = test.basicInfoUpdated(title,subtitle,isbn,author1,author2,author3,translator,
-	    		  price,publisher,publisherDate,coverType,page);
-	      return exist;
-	   } 
-            /**
-	    * method to add title in the database
-	    * @param title
-	    * @param subtitle
-	    * @param isbn
-	    * @param author1
-	    * @param author2
-	    * @param author3
-	    * @param translator
-	    * @param price
-	    * @param publisher
-	    * @param publisherDate
-	    * @param coverType
-	    * @param page
-	    * @param bookInfo
-	    * @param aboutAuthor
-	    * @param contentPage
-	    * @return            true or false
-	    * @throws SQLException 
-	    * @throws ClassNotFoundException 
-	    */
-	   static public boolean editContentPage(String title,String contentPage) 
-	      throws ClassNotFoundException, SQLException {
-	      boolean exist = false;
-	      if (connect() == false)
-	         System.out.println("Fail to connect");
-	   
-	      exist = test.contentPageUpdated(title,contentPage);
-	      return exist;
-	   }
-           	   /**
-	    * method to add title in the database
-	    * @param title
-	    * @param subtitle
-	    * @param isbn
-	    * @param author1
-	    * @param author2
-	    * @param author3
-	    * @param translator
-	    * @param price
-	    * @param publisher
-	    * @param publisherDate
-	    * @param coverType
-	    * @param page
-	    * @param bookInfo
-	    * @param aboutAuthor
-	    * @param contentPage
-	    * @return            true or false
-	    * @throws SQLException 
-	    * @throws ClassNotFoundException 
-	    */
-	   static public boolean editAuthorInfo(String title,String authorInfo) 
-	      throws ClassNotFoundException, SQLException {
-	      boolean exist = false;
-	      if (connect() == false)
-	         System.out.println("Fail to connect");
-	   
-	      exist = test.authorInfoUpdated(title,authorInfo);
-	      return exist;
-	   } 
-            /**
-	    * method to add title in the database
-	    * @param title
-	    * @param subtitle
-	    * @param isbn
-	    * @param author1
-	    * @param author2
-	    * @param author3
-	    * @param translator
-	    * @param price
-	    * @param publisher
-	    * @param publisherDate
-	    * @param coverType
-	    * @param page
-	    * @param bookInfo
-	    * @param aboutAuthor
-	    * @param contentPage
-	    * @return            true or false
-	    * @throws SQLException 
-	    * @throws ClassNotFoundException 
-	    */
-	   static public boolean editBookInfo(String title,String bookInfo) 
-	      throws ClassNotFoundException, SQLException {
-	      boolean exist = false;
-	      if (connect() == false)
-	         System.out.println("Fail to connect");
-	   
-	      exist = test.bookInfoUpdated(title,bookInfo);
-	      return exist;
-	   }
+    
+      /**
+     * this method let SQLConnector insert basic info in database
+     * @param title String
+     * @param subtitle String
+     * @param isbn    String
+     * @param author1 String
+     * @param author2 String
+     * @param author3 String
+     * @param translator String
+     * @param price String
+     * @param publisher String
+     * @param publisherDate String
+     * @param coverType String
+     * @param page String
+     * @return result boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
+       static public boolean editBasicInfo(String title, String subtitle,
+                            String isbn, String author1,  String author2,  String author3, 
+                            String translator, double price,String publisher,Date publisherDate,String coverType,
+                            int page) 
+          throws ClassNotFoundException, SQLException {
+          boolean exist = false;
+          if (connect() == false)
+             System.out.println("Fail to connect");
+
+          exist = test.basicInfoUpdated(title,subtitle,isbn,author1,author2,author3,translator,
+                      price,publisher,publisherDate,coverType,page);
+          return exist;
+       } 
+
+     /**
+     * this method let SQLConnector insert content page in database
+     * @param title        String
+     * @param contentPage  String
+     * @return result      boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
+       static public boolean editContentPage(String title,String contentPage) 
+          throws ClassNotFoundException, SQLException {
+          boolean exist = false;
+          if (connect() == false)
+             System.out.println("Fail to connect");
+
+          exist = test.contentPageUpdated(title,contentPage);
+          return exist;
+       }
+        
+        /**
+        * this method let SQLConnector insert author information in database
+        * @param title        String
+        * @param authorInfo   String
+        * @return result      boolean
+        * @throws SQLException
+        * @throws ClassNotFoundException 
+        */
+       static public boolean editAuthorInfo(String title,String authorInfo) 
+          throws ClassNotFoundException, SQLException {
+          boolean exist = false;
+          if (connect() == false)
+             System.out.println("Fail to connect");
+
+          exist = test.authorInfoUpdated(title,authorInfo);
+          return exist;
+       } 
+       
+       /**
+        * this method let SQLConnector update book info
+        * @param title  String
+        * @param bookInfo  String
+        * @return result boolean
+        * @throws SQLException
+        * @throws ClassNotFoundException 
+        */
+       static public boolean editBookInfo(String title,String bookInfo) 
+          throws ClassNotFoundException, SQLException {
+          boolean exist = false;
+          if (connect() == false)
+             System.out.println("Fail to connect");
+
+          exist = test.bookInfoUpdated(title,bookInfo);
+          return exist;
+       }
 }

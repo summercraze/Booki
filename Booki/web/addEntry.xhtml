@@ -4,6 +4,10 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--
+This is the form where user could add the book
+by filling in appropriate information
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -16,68 +20,154 @@ and open the template in the editor.
         <div>
             <h:form>
                 <h3>Book Entry Form</h3>
-                <h:panelGrid columns = "2" style="color:green">
+                <!-- This is the text area to enter title,which is required by database,
+                code will check it has at least have length of 3 character-->
+                <h:panelGrid columns = "3" style="color:green">
                     <h:outputLabel value = "Book Title:"/>
-                    <h:inputText id="title" value="#{enterEntry.title}" />
+                    <h:inputText id="title" required="true"
+                                 requiredMessage = "Title is required."
+                                 validatorMessage ="Title must have at least 3 characters."
+                                 value="#{enterEntry.title}" >
+                    <f:validateLength minimum='3' maximum='1000'/>
+                    </h:inputText>
+                    <h:message for="title" style="color: red"/>
                 </h:panelGrid>
+               
+                <!-- This is the text area to enter subtitle -->
                 <h:panelGrid columns = "2" style="color:green">
                         <h:outputLabel value = "Book Subtitle:"/>
                         <h:inputText id="subtitle" value="#{enterEntry.subtitle}" />
                 </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
+              
+                <!--This is the area to enter ISBN which is also required by database
+               code will check it at least have length of 10 which is the min. length of ISBN now-->
+                <h:panelGrid columns = "3" style="color:green">
                         <h:outputLabel value = "ISBN:"/>
-                        <h:inputText id="isbn" value ="#{enterEntry.isbn}" />
-                </h:panelGrid>
+                        <h:inputText id="isbn" required="true"
+                                 requiredMessage = "ISBN is required."
+                                 validatorMessage ="Invalid ISBN" 
+                                 value ="#{enterEntry.isbn}" >
+                        <f:validateLength minimum='10' maximum='13'/>
+                        </h:inputText>
+                       <h:message for="isbn" style="color: red"/>
+                 </h:panelGrid>
+                
+                <!--This is the area to enter author.One author name is required
+                 Length of the name would be checked.-->              
                 <h:outputText value = "Author:" style ="color:green"/>
                 <h:panelGrid columns = "6" style="color:green">
                         <h:outputLabel value = "1."/>
-                        <h:inputText id="author1" value="#{enterEntry.author1}"/>
+                        <h:inputText id="author1" required="true"
+                                 requiredMessage = "At least one author is required."
+                                 validatorMessage ="Invalid Name" 
+                                     value="#{enterEntry.author1}">
+                        <f:validateLength minimum='3' maximum='30'/>
+                        </h:inputText>
                         <h:outputLabel value = "2."/>
                         <h:inputText id="author2" value="#{enterEntry.author2}"/>
                         <h:outputLabel value = "3."/>
                         <h:inputText id="author3" value="#{enterEntry.author3}"/>
+                        
                 </h:panelGrid>
+                
+                <!--This is the area to enter translator-->
                 <h:panelGrid columns = "2" style="color:green">
                         <h:outputLabel value = "Translator:"/>
                         <h:inputText id="translator" value="#{enterEntry.translator}"/>
                 </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
+                
+                 <!--This is the area to enter price,regex pattern would check that 
+                 all price is 2 decimal point and does  not start with 0 if there are 2 digit-->
+                <h:panelGrid columns = "3" style="color:green">
                         <h:outputLabel value = "Price:"/>
-                        <h:inputText id="price" value="#{enterEntry.price}"/>
+                        <h:inputText id="price" required="true"
+                                 requiredMessage = "Price is required,must be in form NNN,NNN.NN"
+                                 validatorMessage ="Invalid Price,,must be in form NNN,NNN.NN" 
+                                 value="#{enterEntry.price}">
+                        <f:validateRegex pattern="(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?$"/>
+                        </h:inputText>
+                        <h:message for="price" style="color: red"/>
                 </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
+               
+                 <!--This is the area to enter publisher,code would check the length of the publisher-->
+                <h:panelGrid columns = "3" style="color:green">
                         <h:outputLabel value = "Publisher:"/>
-                        <h:inputText id="publisher" value="#{enterEntry.publisher}"/>
+                        <h:inputText id="publisher" required="true"
+                                 requiredMessage = "Publisher is required."
+                                 validatorMessage ="Invalid Publisher" 
+                                 value="#{enterEntry.publisher}">
+                        <f:validateLength minimum='3' maximum='500'/>
+                        </h:inputText>
+                        <h:message for="publisher" style="color: red"/>                      
                 </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
+                
+                <!--This is the area to enter publishing date,
+                code check it is in form of MM/DD/YYYY-->
+                <h:panelGrid columns = "3" style="color:green">
                         <h:outputLabel value = "Date of Publishing:"/>
-                        <h:inputText id="pubDate" value="#{enterEntry.publisherDate}"/>
+                        <h:inputText id="pubDate"
+                                     required="true"
+                                     requiredMessage = "Date is required,must be form MM/DD/YYYY."
+                                     validatorMessage ="Invalid Date,must be in MM/DD/YYYY" 
+                                     value="#{enterEntry.publisherDate}">
+                       <f:validateRegex pattern="[\d]{2}/[\d]{2}/[\d]{4}"/>
+                       </h:inputText>
+                       <h:message for="pubDate" style="color: red"/>                  
                 </h:panelGrid>
+                
+                <!--This is the area to enter cover type,user must choose one type of cover-->
                 <h:outputText value = "Type of Book:" style ="color:green"/>
-                 <h:panelGrid columns = "2" style="color:green">
-                     <h:selectOneRadio id="coverType" value="#{enterEntry.coverType}">
+                 <h:panelGrid columns = "3" style="color:green">
+                     <h:selectOneRadio id="coverType" 
+                                       required="true"
+                                       requiredMessage = "Please select at least one type of book cover."
+                                       value="#{enterEntry.coverType}">
                          <f:selectItem itemValue="Paperback" itemLabel="PaperBack"/>
                          <f:selectItem itemValue="Hardcover" itemLabel="Hardcover"/>
                      </h:selectOneRadio>
+                     <h:message for="coverType" style="color: red"/>  
                 </h:panelGrid> 
-                <h:panelGrid columns = "2" style="color:green">
+               
+                <!--This is the area to enter pages,must match pattern and would not start with 0-->
+                <h:panelGrid columns = "3" style="color:green">
                         <h:outputLabel value = "Pages:"/>
-                        <h:inputText id="pages" value="#{enterEntry.page}"/>
+                        <h:inputText id="pages" required="true"
+                                     requiredMessage = "Page number is required,must be in form NNN,NNN"
+                                     validatorMessage ="Invalid page number,must be in form NNN,NNN" 
+                                     value="#{enterEntry.page}">
+                        <f:validateRegex pattern="[1-9]\d{0,2}(,\d{3})*"/>
+                        </h:inputText>
+                        <h:message for="pages" style="color: red"/>  
                 </h:panelGrid> 
-                 <h:panelGrid columns = "1" style="color:green">
+                 <!--This is the area to enter book information,user must enter info-->
+                <h:panelGrid columns = "3" style="color:green">
                         <h:outputText value = "About Book:" style ="color:green"/>
-                        <h:inputTextarea id="aboutBook" style ="width:400px;height:70px" value="#{enterEntry.bookInfo}"/>
+                        <h:inputTextarea id="aboutBook" required="true"
+                                     requiredMessage = "Book information is required."
+                                     style ="width:400px;height:70px" value="#{enterEntry.bookInfo}"/>
+                        <h:message for="aboutBook" style="color: red"/>  
                 </h:panelGrid> 
+                <!--This is the area to enter author information-->
                 <h:panelGrid columns = "1" style="color:green">
                         <h:outputText value = "About Author:" style ="color"/>
                         <h:inputTextarea id="aboutAuthor" style ="width:400px;height:70px" value="#{enterEntry.aboutAuthor}"/>
                 </h:panelGrid> 
+                <!--This is the area to enter content page-->
                 <h:panelGrid columns = "1" style="color:green">
                         <h:outputText value = "Content Page" style ="color:green"/>
                         <h:inputTextarea id="contentPage" style ="width:400px;height:70px" value="#{enterEntry.contentPage}"/>
-                </h:panelGrid>                
+                </h:panelGrid>  
+                <!--This is the option user have.Submit Book will add book into database.Cancel will take user
+                back to search page-->
+                <h:panelGrid columns = "2" >
                 <h:commandButton id="confirm" value="Submit Book" action="#{enterEntry.setStatus()}"/>
-             </h:form>    
+                </h:panelGrid>    
+             </h:form> 
+        </div>
+        <div>
+            <h:form> 
+                <h:commandButton id="back" value="Cancel" action="index"/>
+            </h:form>           
         </div>
     </body>
 </html>

@@ -3,6 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
+ *This is helper method of SQL code
+ */
 package SQLCode;
 
 import java.sql.*;
@@ -92,8 +96,8 @@ public class SQLHelperMethod
    }
    /**
     * this method check whether the title exist in database
-    * @param title
-    * @return status
+    * @param title String
+    * @return status int
     * @throws SQLException
     * @throws ClassNotFoundException 
     */
@@ -134,8 +138,8 @@ public class SQLHelperMethod
    }
     /**
     * this method let SQLConnector check title in database
-    * @param title
-    * @return boolean
+    * @param title String
+    * @return result boolean
     * @throws SQLException
     * @throws ClassNotFoundException 
     */
@@ -155,22 +159,22 @@ public class SQLHelperMethod
    }
        /**
      * this method insert title into the database
-     * @param title
-     * @param subtitle
-     * @param isbn
-     * @param author1
-     * @param author2
-     * @param author3
-     * @param translator
-     * @param price
-     * @param publisher
-     * @param publisherDate
-     * @param coverType
-     * @param page
-     * @param bookInfo
-     * @param aboutAuthor
-     * @param contentPage
-     * @return status
+     * @param title String
+     * @param subtitle String
+     * @param isbn String
+     * @param author1 String
+     * @param author2 String
+     * @param author3 String
+     * @param translator String
+     * @param price String
+     * @param publisher String
+     * @param publisherDate String
+     * @param coverType String
+     * @param page String
+     * @param bookInfo String
+     * @param aboutAuthor String
+     * @param contentPage String
+     * @return status boolean
      * @throws SQLException
      * @throws ClassNotFoundException 
      */
@@ -230,22 +234,22 @@ public class SQLHelperMethod
     }
     /**
      * this method let SQLConnector insert title in database
-     * @param title
-     * @param subtitle
-     * @param isbn
-     * @param author1
-     * @param author2
-     * @param author3
-     * @param translator
-     * @param price
-     * @param publisher
-     * @param publisherDate
-     * @param coverType
-     * @param page
-     * @param bookInfo
-     * @param aboutAuthor
-     * @param contentPage
-     * @return boolean
+     * @param title String
+     * @param subtitle String
+     * @param isbn String
+     * @param author1 String
+     * @param author2 String
+     * @param author3 String
+     * @param translator String
+     * @param price String
+     * @param publisher String
+     * @param publisherDate String
+     * @param coverType String
+     * @param page String
+     * @param bookInfo String
+     * @param aboutAuthor String
+     * @param contentPage String
+     * @return result boolean
      * @throws SQLException
      * @throws ClassNotFoundException 
      */
@@ -271,8 +275,8 @@ public class SQLHelperMethod
     }
     /**
     * this method get the book info from database
-    * @param title
-    * @return boolean
+    * @param title String
+    * @return success boolean
     * @throws SQLException
     * @throws ClassNotFoundException 
     */
@@ -336,39 +340,39 @@ public class SQLHelperMethod
       }
       return success;
     }
-    /**
-    * this method get the book info 
-    * @param title
-    * @return boolean
-    * @throws SQLException
-    * @throws ClassNotFoundException 
-    */
-    public Book getBook(String title) throws ClassNotFoundException, SQLException 
-    {
+        /**
+        * this method get the book info 
+        * @param title String
+        * @return book Book
+        * @throws SQLException
+        * @throws ClassNotFoundException 
+        */
+        public Book getBook(String title) throws ClassNotFoundException, SQLException 
+        {
 
-       if (getBookData(title) == false) {
-         System.out.println("Error getting dates");
-       }
-       return  book;
-    }
-   /**
-         * this method update a title's basic info into the database
-         * @param title
-         * @param subtitle
-         * @param isbn
-         * @param author1
-         * @param author2
-         * @param author3
-         * @param translator
-         * @param price
-         * @param publisher
-         * @param publisherDate
-         * @param coverType
-         * @param page
-         * @return status
+           if (getBookData(title) == false) {
+             System.out.println("Error getting dates");
+           }
+           return  book;
+        }
+       /**
+         * this method update a book's basic info into the database
+         * @param title String
+         * @param subtitle String
+         * @param isbn    String
+         * @param author1 String
+         * @param author2 String
+         * @param author3 String
+         * @param translator String
+         * @param price String
+         * @param publisher String
+         * @param publisherDate String
+         * @param coverType String
+         * @param page String
+         * @return status int
          * @throws SQLException
          * @throws ClassNotFoundException 
-         */
+        */
         private static int updateBasicInfo(String title, String subtitle,
                         String isbn, String author1,  String author2,  String author3, 
                         String translator, double price,String publisher,Date publisherDate,String coverType,
@@ -421,142 +425,112 @@ public class SQLHelperMethod
         }
 
     /**
-     * this method let SQLConnector insert title in database
-     * @param title
-     * @param subtitle
-     * @param isbn
-     * @param author1
-     * @param author2
-     * @param author3
-     * @param translator
-     * @param price
-     * @param publisher
-     * @param publisherDate
-     * @param coverType
-     * @param page
-     * @return boolean
+     * this method let SQLConnector insert basic info in database
+     * @param title String
+     * @param subtitle String
+     * @param isbn    String
+     * @param author1 String
+     * @param author2 String
+     * @param author3 String
+     * @param translator String
+     * @param price String
+     * @param publisher String
+     * @param publisherDate String
+     * @param coverType String
+     * @param page String
+     * @return result boolean
      * @throws SQLException
      * @throws ClassNotFoundException 
      */
-    public boolean basicInfoUpdated(String title, String subtitle,
-                    String isbn, String author1,  String author2,  String author3, 
-                    String translator, double price,String publisher,Date publisherDate,String coverType,
-                    int page) 
-                                    throws ClassNotFoundException, SQLException {
-            int status;
-            status = updateBasicInfo(title,subtitle,isbn,author1,author2,author3,translator,
-                            price,publisher,publisherDate,coverType,page);
-            boolean result = false; 
-            if (status == 0)
-                    result = false;
+     public boolean basicInfoUpdated(String title, String subtitle,
+                        String isbn, String author1,  String author2,  String author3, 
+                        String translator, double price,String publisher,Date publisherDate,String coverType,
+                        int page) 
+                                        throws ClassNotFoundException, SQLException {
+                int status;
+                status = updateBasicInfo(title,subtitle,isbn,author1,author2,author3,translator,
+                                price,publisher,publisherDate,coverType,page);
+                boolean result = false; 
+                if (status == 0)
+                        result = false;
 
-            if (status == 1)
-                    result = true;
+                if (status == 1)
+                        result = true;
 
-            return result;
-}
-    	   /**
-		 * this method update a title's basic info into the database
-		 * @param title
-		 * @param subtitle
-		 * @param isbn
-		 * @param author1
-		 * @param author2
-		 * @param author3
-		 * @param translator
-		 * @param price
-		 * @param publisher
-		 * @param publisherDate
-		 * @param coverType
-		 * @param page
-		 * @return status
-		 * @throws SQLException
-		 * @throws ClassNotFoundException 
-		 */
-		private static int updateContentPage(String title,String contentPage)
-						throws SQLException, ClassNotFoundException {
-			Connection dbConnection = null;
-			CallableStatement updateContentPageStatement = null;
-			int status = 2;
+                return result;
+        }
+        /**
+         * this method update content page into the database
+         * @param title        String
+         * @param contentPage  String
+         * @return status      int
+         * @throws SQLException
+         * @throws ClassNotFoundException 
+         */
+        private static int updateContentPage(String title,String contentPage)
+                                        throws SQLException, ClassNotFoundException {
+                Connection dbConnection = null;
+                CallableStatement updateContentPageStatement = null;
+                int status = 2;
 
-			String insertContentsql = "{call insertcontentpage(?,?,?)}";
-			try {
-				//connect and call function
-				dbConnection = connect();
-				updateContentPageStatement = dbConnection.prepareCall(insertContentsql);
+                String insertContentsql = "{call insertcontentpage(?,?,?)}";
+                try {
+                        //connect and call function
+                        dbConnection = connect();
+                        updateContentPageStatement = dbConnection.prepareCall(insertContentsql);
 
-				//put the variable into the function to execute
-				updateContentPageStatement.setString(1, title);
-				updateContentPageStatement.setString(2, contentPage);
+                        //put the variable into the function to execute
+                        updateContentPageStatement.setString(1, title);
+                        updateContentPageStatement.setString(2, contentPage);
 
-				//get the output from the function
-				updateContentPageStatement.registerOutParameter(3, java.sql.Types.INTEGER);
-				// execute insertloginSqlstore procedure
-				updateContentPageStatement.executeUpdate();
-				//get the output and return it
-				status = updateContentPageStatement.getInt(3);
+                        //get the output from the function
+                        updateContentPageStatement.registerOutParameter(3, java.sql.Types.INTEGER);
+                        // execute insertloginSqlstore procedure
+                        updateContentPageStatement.executeUpdate();
+                        //get the output and return it
+                        status = updateContentPageStatement.getInt(3);
 
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
+                } catch (SQLException e) {
+                        System.out.println(e.getMessage());
 
-			} finally {
-				if (updateContentPageStatement != null) {
-					updateContentPageStatement.close();
-				}
+                } finally {
+                        if (updateContentPageStatement != null) {
+                                updateContentPageStatement.close();
+                        }
 
-				if (dbConnection != null) {
-					dbConnection.close();
-				}
-			}
-			return status;
-		}
+                        if (dbConnection != null) {
+                                dbConnection.close();
+                        }
+                }
+                return status;
+        }
 
-/**
- * this method let SQLConnector insert title in database
- * @param title
- * @param subtitle
- * @param isbn
- * @param author1
- * @param author2
- * @param author3
- * @param translator
- * @param price
- * @param publisher
- * @param publisherDate
- * @param coverType
- * @param page
- * @return boolean
- * @throws SQLException
- * @throws ClassNotFoundException 
- */
-public boolean contentPageUpdated(String title,String contentPage) 
-				throws ClassNotFoundException, SQLException {
-	int status;
-	status = updateContentPage(title, contentPage);
-	boolean result = false; 
-	if (status == 0)
-		result = false;
+        /**
+         * this method let SQLConnector insert content page in database
+         * @param title        String
+         * @param contentPage  String
+         * @return result      boolean
+         * @throws SQLException
+         * @throws ClassNotFoundException 
+         */
+        public boolean contentPageUpdated(String title,String contentPage) 
+                                        throws ClassNotFoundException, SQLException {
+                int status;
+                status = updateContentPage(title, contentPage);
+                boolean result = false; 
+                if (status == 0)
+                        result = false;
 
-	if (status == 1)
-		result = true;
+                if (status == 1)
+                        result = true;
 
-	return result;
-}
-/**
-	 * this method update a title's basic info into the database
-	 * @param title
-	 * @param subtitle
-	 * @param isbn
-	 * @param author1
-	 * @param author2
-	 * @param author3
-	 * @param translator
-	 * @param price
-	 * @param publisher
-	 * @param publisherDate
-	 * @param coverType
-	 * @param page
-	 * @return status
+                return result;
+        }
+         /**
+	 * this method update author information in datebase
+	 * @param title       String
+	 * @param authorInfo  String
+	 * @return status     int
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 */
@@ -598,122 +572,91 @@ public boolean contentPageUpdated(String title,String contentPage)
 		return status;
 	}
 
-/**
-* this method let SQLConnector insert title in database
-* @param title
-* @param subtitle
-* @param isbn
-* @param author1
-* @param author2
-* @param author3
-* @param translator
-* @param price
-* @param publisher
-* @param publisherDate
-* @param coverType
-* @param page
-* @return boolean
-* @throws SQLException
-* @throws ClassNotFoundException 
-*/
-public boolean authorInfoUpdated(String title,String authorInfo) 
-			throws ClassNotFoundException, SQLException {
-int status;
-status = updateAuthorInfo(title, authorInfo);
-boolean result = false; 
-if (status == 0)
-	result = false;
+        /**
+        * this method let SQLConnector insert author information in database
+        * @param title        String
+        * @param authorInfo   String
+        * @return result      boolean
+        * @throws SQLException
+        * @throws ClassNotFoundException 
+        */
+        public boolean authorInfoUpdated(String title,String authorInfo) 
+                            throws ClassNotFoundException, SQLException {
+        int status;
+        status = updateAuthorInfo(title, authorInfo);
+        boolean result = false; 
+        if (status == 0)
+            result = false;
 
-if (status == 1)
-	result = true;
+        if (status == 1)
+            result = true;
 
-return result;
-}
-/**
- * this method update a title's basic info into the database
- * @param title
- * @param subtitle
- * @param isbn
- * @param author1
- * @param author2
- * @param author3
- * @param translator
- * @param price
- * @param publisher
- * @param publisherDate
- * @param coverType
- * @param page
- * @return status
- * @throws SQLException
- * @throws ClassNotFoundException 
- */
-private static int updateBookInfo(String title,String bookInfo)
-				throws SQLException, ClassNotFoundException {
-	Connection dbConnection = null;
-	CallableStatement updateBookStatement = null;
-	int status = 2;
+        return result;
+        }
+        /**
+        * this method update a book's book information into the database
+        * @param title    String
+        * @param bookInfo String
+        * @return status  int
+        * @throws SQLException
+        * @throws ClassNotFoundException 
+        */
+        private static int updateBookInfo(String title,String bookInfo)
+                                    throws SQLException, ClassNotFoundException {
+            Connection dbConnection = null;
+            CallableStatement updateBookStatement = null;
+            int status = 2;
 
-	String updateAuthrosql = "{call insertBookInfo(?,?,?)}";
-	try {
-		//connect and call function
-		dbConnection = connect();
-		updateBookStatement = dbConnection.prepareCall(updateAuthrosql);
+            String updateAuthrosql = "{call insertBookInfo(?,?,?)}";
+            try {
+                    //connect and call function
+                    dbConnection = connect();
+                    updateBookStatement = dbConnection.prepareCall(updateAuthrosql);
 
-		//put the variable into the function to execute
-		updateBookStatement.setString(1, title);
-		updateBookStatement.setString(2, bookInfo);
+                    //put the variable into the function to execute
+                    updateBookStatement.setString(1, title);
+                    updateBookStatement.setString(2, bookInfo);
 
-		//get the output from the function
-		updateBookStatement.registerOutParameter(3, java.sql.Types.INTEGER);
-		// execute insertloginSqlstore procedure
-		updateBookStatement.executeUpdate();
-		//get the output and return it
-		status = updateBookStatement.getInt(3);
+                    //get the output from the function
+                    updateBookStatement.registerOutParameter(3, java.sql.Types.INTEGER);
+                    // execute insertloginSqlstore procedure
+                    updateBookStatement.executeUpdate();
+                    //get the output and return it
+                    status = updateBookStatement.getInt(3);
 
-	} catch (SQLException e) {
-		System.out.println(e.getMessage());
+            } catch (SQLException e) {
+                    System.out.println(e.getMessage());
 
-	} finally {
-		if (updateBookStatement != null) {
-			updateBookStatement.close();
-		}
+            } finally {
+                    if (updateBookStatement != null) {
+                            updateBookStatement.close();
+                    }
 
-		if (dbConnection != null) {
-			dbConnection.close();
-		}
-	}
-	return status;
-}
+                    if (dbConnection != null) {
+                            dbConnection.close();
+                    }
+            }
+            return status;
+        }
 
-/**
-* this method let SQLConnector insert title in database
-* @param title
-* @param subtitle
-* @param isbn
-* @param author1
-* @param author2
-* @param author3
-* @param translator
-* @param price
-* @param publisher
-* @param publisherDate
-* @param coverType
-* @param page
-* @return boolean
-* @throws SQLException
-* @throws ClassNotFoundException 
-*/
-public boolean bookInfoUpdated(String title,String bookInfo) 
-		throws ClassNotFoundException, SQLException {
-int status;
-status = updateBookInfo(title,bookInfo);
-boolean result = false; 
-if (status == 0)
-result = false;
+        /**
+        * this method let SQLConnector update book info
+        * @param title  String
+        * @param bookInfo  String
+        * @return result boolean
+        * @throws SQLException
+        * @throws ClassNotFoundException 
+        */
+        public boolean bookInfoUpdated(String title,String bookInfo) 
+                    throws ClassNotFoundException, SQLException {
+        int status;
+        status = updateBookInfo(title,bookInfo);
+        boolean result = false; 
+        if (status == 0)
+          result = false;
+        if (status == 1)
+          result = true;
 
-if (status == 1)
-result = true;
-
-return result;
-}
+        return result;
+        }
 }

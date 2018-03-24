@@ -4,6 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--
+This allow user to view the book
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -14,118 +17,116 @@ and open the template in the editor.
     </head>
     <body>
         <f:view>
+            <!--This get the name of the title-->
             <f:metadata>
                  <f:viewParam name="viewName" value="#{viewEntry.title}" />
                  <f:viewParam name="bookTitle" value="#{seachTitle.title}" />
             </f:metadata>
             <h:form>
-            <h2>
-                <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="#{viewEntry.title}">
-               </h:outputFormat>
-               _________________________________________________________________
-               </h:panelGrid>
+            <!--This shows the title-->
+            <h2>               
+            <h:panelGrid columns = "1" style="color:green">
+                  <h:outputFormat value="#{viewEntry.title}"/>
+             _________________________________________________________________
+            </h:panelGrid>
             </h2>
+                
+            <!--This section is basic information-->
             <h3>
-               <h:panelGrid columns = "2" style="color:green">
-               <h:outputFormat value="Basic Information">
-               </h:outputFormat>
-               <h:commandButton id="confirmEditBI" value="Edit" action="editBasicInfo">
-               <f:setPropertyActionListener target="#{basicInfoEdit.title}" value="#{seachTitle.title}" />
-               </h:commandButton>
-               </h:panelGrid>
-               <h:panelGrid columns = "1" style="color:green">
-               -----------------------------------------------------------------
-               </h:panelGrid>
+             <h:panelGrid columns = "2" style="color:green">
+              <h:outputFormat id="BISectiion" value="Basic Information"/>
+              <!--This is the button that link the page to edit the basic information--> 
+              <h:commandButton id="confirmEditBI" value="Edit" action="editBasicInfo">
+              <f:setPropertyActionListener target="#{basicInfoEdit.title}" value="#{seachTitle.title}" />
+              </h:commandButton>
+             </h:panelGrid>
+            <h:panelGrid columns = "1">
+            -----------------------------------------------------------------
+            </h:panelGrid>
             </h3>
-               <h:panelGrid columns = "2" style="color:green">
-               <h:outputFormat value="Subtitle:">
-               </h:outputFormat>
-                   <h:outputFormat value="#{viewEntry.getSubtitle()}">
-               </h:outputFormat>
-               <h:outputFormat value="ISBN:">
-               </h:outputFormat>
-                   <h:outputFormat value="#{viewEntry.getISBN()}">
-               </h:outputFormat>
-               <h:outputFormat value="Author:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getAuthors()}">
-               </h:outputFormat>
-               <h:outputFormat value="Translator:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getTranslator()}">
-               </h:outputFormat>
-               <h:outputFormat value="Page:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getPage()}">
-               </h:outputFormat>
-               <h:outputFormat value="Type of Cover:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getCoverType()}">
-               </h:outputFormat>
-               <h:outputFormat value="Publisher:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getPublisher()}">
-               </h:outputFormat>
-               <h:outputFormat value="Publishing Date:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getPublisherDate()}">
-               </h:outputFormat>
-               <h:outputFormat value="Price:">
-               </h:outputFormat>
-               <h:outputFormat value="#{viewEntry.getPrice()}">
-               </h:outputFormat>
-               </h:panelGrid>
+            
+            <!--The section to view basic information -->
+            <h:panelGrid columns = "2" style="color:green">
+             <h:outputFormat value="Subtitle:"/>
+             <h:outputFormat id="subtitle" value="#{viewEntry.getSubtitle()}"/>
+             <h:outputFormat value="ISBN:"/>
+             <h:outputFormat id="ISBN" value="#{viewEntry.getISBN()}"/>
+             <h:outputFormat value="Author:"/>
+             <h:outputFormat id="author" value="#{viewEntry.getAuthors()}"/>
+             <h:outputFormat value="Translator:"/>
+             <h:outputFormat id="translator" value="#{viewEntry.getTranslator()}"/>
+             <h:outputFormat value="Page:"/>
+             <h:outputFormat id="pages" value="#{viewEntry.getPage()}"/>
+             <h:outputFormat value="Type of Cover:"/>
+             <h:outputFormat id="coverType" value="#{viewEntry.getCoverType()}"/>
+             <h:outputFormat value="Publisher:"/>
+             <h:outputFormat id="publisher" value="#{viewEntry.getPublisher()}"/>
+             <h:outputFormat value="Publishing Date:"/>
+             <h:outputFormat id="publisherDate" value="#{viewEntry.getPublisherDate()}"/>
+             <h:outputFormat value="Price:"/>
+             <h:outputFormat id="price" value="#{viewEntry.getPrice()}"/>
+            </h:panelGrid>
+            
+            <!--The section is content page -->
             <h3>
-               <h:panelGrid columns = "2" style="color:green">
-               <h:outputFormat value="Content Page">
-               </h:outputFormat>
-               <h:commandButton id="confirmEditCP" value="Edit" action="contentPageChanged">
-               <f:setPropertyActionListener target="#{contentPageEdit.title}" value="#{seachTitle.title}" />
-               </h:commandButton>
-               </h:panelGrid>
-               <h:panelGrid columns = "1" style="color:green">
-               -----------------------------------------------------------------
-               </h:panelGrid>
-               </h3>          
-               <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="#{viewEntry.getContentPage()}">
-               </h:outputFormat>
-               </h:panelGrid>
-               <h3>
-               <h:panelGrid columns = "2" style="color:green">
-               <h:outputFormat value="About Book">
-               </h:outputFormat>
-                <h:commandButton id="confirmEditAB" value="Edit" action="bookInformationChanged">
-                <f:setPropertyActionListener target="#{bookInfoEdit.title}" value="#{seachTitle.title}" />
-               </h:commandButton>
-               </h:panelGrid>
-               <h:panelGrid columns = "1" style="color:green">
-               -----------------------------------------------------------------
-               </h:panelGrid>
-               </h3>
-                 <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="#{viewEntry.getBookInformation()}">
-               </h:outputFormat>
-               </h:panelGrid>
-                <h3>
-               <h:panelGrid columns = "2" style="color:green">
-               <h:outputFormat value="About Author">
-               </h:outputFormat>
-               <h:commandButton id="confirmEditAA" value="Edit" action="authorInformationChanged">
-                <f:setPropertyActionListener target="#{authorInfoEdit.title}" value="#{seachTitle.title}" />
-               </h:commandButton>
-               </h:panelGrid>
-               <h:panelGrid columns = "1" style="color:green">
-               -----------------------------------------------------------------
-               </h:panelGrid>
-               </h3>
-                <h:panelGrid columns = "1" style="color:green">
-               <h:outputFormat value="#{viewEntry.getAuthorInfo()}">
-               </h:outputFormat>
-               </h:panelGrid>
-               <h:commandButton id="confirm" value="Go Back To Search" action="index"/>
-            </h:form>
+             <h:panelGrid columns = "2" style="color:green">
+              <h:outputFormat id="CPSection" value="Content Page"/>
+              <!--This is the button that link the page to edit the content page--> 
+              <h:commandButton id="confirmEditCP" value="Edit" action="contentPageChanged">
+              <f:setPropertyActionListener target="#{contentPageEdit.title}" value="#{seachTitle.title}" />
+              </h:commandButton>
+             </h:panelGrid>
+            <h:panelGrid columns = "1" style="color:green">
+            -----------------------------------------------------------------
+            </h:panelGrid>
+           </h3>          
+           
+           <!--The section to view content page -->
+           <h:panelGrid columns = "1" style="color:green">
+            <h:outputFormat id="contentPage" value="#{viewEntry.getContentPage()}"/>
+           </h:panelGrid>
+          
+           <!--The section is book information -->
+           <h3>
+           <h:panelGrid columns = "2" style="color:green">
+            <h:outputFormat id="ABSection" value="About Book"/>
+             <!--This is the button that link the page to edit the book information--> 
+            <h:commandButton id="confirmEditAB" value="Edit" action="bookInformationChanged">
+             <f:setPropertyActionListener target="#{bookInfoEdit.title}" value="#{seachTitle.title}" />
+            </h:commandButton>
+           </h:panelGrid>
+           <h:panelGrid columns = "1" style="color:green">
+           -----------------------------------------------------------------
+           </h:panelGrid>
+           </h3>
+           
+           <!--The section to view book information -->
+           <h:panelGrid columns = "1" style="color:green">
+            <h:outputFormat id="bookInfo" value="#{viewEntry.getBookInformation()}"/>
+           </h:panelGrid>
+           
+           <!--The section is about author -->
+           <h3>
+            <h:panelGrid columns = "2" style="color:green">
+             <h:outputFormat id ="AASection" value="About Author"/>
+              <!--This is the button that link the page to edit the author information--> 
+             <h:commandButton id="confirmEditAA" value="Edit" action="authorInformationChanged">
+              <f:setPropertyActionListener target="#{authorInfoEdit.title}" value="#{seachTitle.title}" />
+             </h:commandButton>
+            </h:panelGrid>
+            <h:panelGrid columns = "1" style="color:green">
+            -----------------------------------------------------------------
+            </h:panelGrid>
+           </h3>
+           
+           <!--The section is to view author -->
+           <h:panelGrid columns = "1" style="color:green">
+            <h:outputFormat id="aboutAuthor" value="#{viewEntry.getAuthorInfo()}"/>
+           </h:panelGrid>
+          
+           <!--The section is to go back to search -->
+           <h:commandButton id="confirm" value="Go Back To Search" action="index"/>
+        </h:form>
         </f:view>
     </body>
 </html>

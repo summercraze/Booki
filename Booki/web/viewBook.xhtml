@@ -4,6 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!---This allow user to view a book that exist-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -15,18 +16,20 @@ and open the template in the editor.
     <body>
 
         <h:form>
+            <!--This shows output of a back-->
             <h2>
-              <h:outputFormat value="The book {0} does exist,would you like to view it?">
-	      <f:param value="#{seachTitle.title}" />
-               </h:outputFormat>
+              <h:outputFormat value="The book {0} does exist,would you like to view it?" style="color:green">
+	       <f:param value="#{seachTitle.title}" />
+              </h:outputFormat>
             </h2>
+            
+            <!--This allow user to either view the book or go back to search-->
              <h:panelGrid columns = "2" style="color:green">
                  <h:button id="confirm" value="View Book" outcome="bookViewer">
                      <f:param name="viewName" value="#{seachTitle.title}"/>
                  </h:button>
-                 <h:commandButton id="back" value="Back" action="index"/>
+                 <h:commandButton id="back" value="Back To Search" action="index"/>
              </h:panelGrid>    
-        </h:form>
-        
+        </h:form>       
     </body>
 </html>

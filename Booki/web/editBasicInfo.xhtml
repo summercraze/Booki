@@ -4,6 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--This is the page to change basic information-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -14,59 +15,121 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-             <h:form>
-                 <h3>
-                      <h:outputText escape ="false" style ="color:green"
-                          value ="#{basicInfoEdit.getTitle()}"/>
-                 </h3>
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "Book Subtitle:"/>
-                        <h:inputText id="subtitle" value="#{basicInfoEdit.subtitle}" />
-                </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "ISBN:"/>
-                        <h:inputText id="isbn" value ="#{basicInfoEdit.isbn}" />
-                </h:panelGrid>
-                <h:outputText value = "Author:" style ="color:green"/>
-                <h:panelGrid columns = "6" style="color:green">
-                        <h:outputLabel value = "1."/>
-                        <h:inputText id="author1" value="#{basicInfoEdit.author1}"/>
-                        <h:outputLabel value = "2."/>
-                        <h:inputText id="author2" value="#{basicInfoEdit.author2}"/>
-                        <h:outputLabel value = "3."/>
-                        <h:inputText id="author3" value="#{basicInfoEdit.author3}"/>
-                </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "Translator:"/>
-                        <h:inputText id="translator" value="#{basicInfoEdit.translator}"/>
-                </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "Price:"/>
-                        <h:inputText id="price" value="#{basicInfoEdit.price}"/>
-                </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "Publisher:"/>
-                        <h:inputText id="publisher" value="#{basicInfoEdit.publisher}"/>
-                </h:panelGrid>
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "Date of Publishing:"/>
-                        <h:inputText id="pubDate" value="#{basicInfoEdit.publisherDate}"/>
-                </h:panelGrid>
-                <h:outputText value = "Type of Book:" style ="color:green"/>
-                 <h:panelGrid columns = "2" style="color:green">
-                     <h:selectOneRadio id="coverType" value="#{basicInfoEdit.coverType}">
-                         <f:selectItem itemValue="Paperback" itemLabel="PaperBack"/>
-                         <f:selectItem itemValue="Hardcover" itemLabel="Hardcover"/>
-                     </h:selectOneRadio>
-                </h:panelGrid> 
-                <h:panelGrid columns = "2" style="color:green">
-                        <h:outputLabel value = "Pages:"/>
-                        <h:inputText id="pages" value="#{basicInfoEdit.page}"/>
-                </h:panelGrid> 
-                <h:commandButton id="confirm" value="Submit Book" action="#{basicInfoEdit.setStatus()}">
-                <f:setPropertyActionListener target="#{basicInfoEdit.title}" value="#{seachTitle.title}" />
-                </h:commandButton>
-              </h:form> 
+         <h:form>
+             <!--This shows what information needed to change-->
+             <h3>
+                  <h:outputText escape ="false" style ="color:green"
+                      value ="#{basicInfoEdit.getTitle()}"/>
+             </h3>
+             
+             <!--This allows user to enter subtitle-->
+             <h:panelGrid columns = "2" style="color:green">
+                    <h:outputLabel value = "Book Subtitle:"/>
+                    <h:inputText id="subtitle" value="#{basicInfoEdit.subtitle}" />
+             </h:panelGrid>
+             
+             <!--This allow user to enter ISBN-->
+             <h:panelGrid columns = "3" style="color:green">
+                    <h:outputLabel value = "ISBN:"/>
+                    <h:inputText id="isbn" required="true"
+                                 requiredMessage = "ISBN is required."
+                                 validatorMessage ="Invalid ISBN" 
+                                 value ="#{basicInfoEdit.isbn}" >
+                    <f:validateLength minimum='10' maximum='13'/>
+                    </h:inputText>
+                    <h:message for="isbn" style="color: red"/>
+            </h:panelGrid>
+            
+            <!--This allow user to enter user-->
+            <h:outputText value = "Author:" style ="color:green"/>
+            <h:panelGrid columns = "6" style="color:green">
+                    <h:outputLabel value = "1."/>
+                    <h:inputText id="author1" 
+                                 required="true"
+                                 requiredMessage = "At least one author is required."
+                                 validatorMessage ="Invalid Name" 
+                                 value="#{basicInfoEdit.author1}">
+                    <f:validateLength minimum='3' maximum='30'/>
+                    </h:inputText>
+                    <h:outputLabel value = "2."/>
+                    <h:inputText id="author2" value="#{basicInfoEdit.author2}"/>
+                    <h:outputLabel value = "3."/>
+                    <h:inputText id="author3" value="#{basicInfoEdit.author3}"/>
+            </h:panelGrid>
+            
+            <!--This allow user to enter translator-->
+            <h:panelGrid columns = "2" style="color:green">
+                    <h:outputLabel value = "Translator:"/>
+                    <h:inputText id="translator" value="#{basicInfoEdit.translator}"/>
+            </h:panelGrid>
+            
+            <!--This allow user to enter price-->
+            <h:panelGrid columns = "3" style="color:green">
+                    <h:outputLabel value = "Price:"/>
+                    <h:inputText id="price" 
+                                 required="true"
+                                 requiredMessage = "Price is required,must be in form NNN,NNN.NN"
+                                 validatorMessage ="Invalid Price,,must be in form NNN,NNN.NN" 
+                                 value="#{basicInfoEdit.price}">
+                    <f:validateRegex pattern="(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?$"/>
+                    </h:inputText>
+                    <h:message for="price" style="color: red"/>
+            </h:panelGrid>
+            
+            <!---This allow user to put in publisher-->
+            <h:panelGrid columns = "3" style="color:green">
+                    <h:outputLabel value = "Publisher:"/>
+                    <h:inputText id="publisher" required="true"
+                                 requiredMessage = "Publisher is required."
+                                 validatorMessage ="Invalid Publisher"
+                                 value="#{basicInfoEdit.publisher}">
+                    <f:validateLength minimum='3' maximum='500'/>
+                    </h:inputText>
+                    <h:message for="publisher" style="color: red"/> 
+            </h:panelGrid>
+            
+            <!---This allow user to enter date of publisher-->
+            <h:panelGrid columns = "3" style="color:green">
+                    <h:outputLabel value = "Date of Publishing:"/>
+                    <h:inputText id="pubDate" 
+                                 required="true"
+                                 requiredMessage = "Date is required,must be form MM/DD/YYYY."
+                                 validatorMessage ="Invalid Date,must be in MM/DD/YYYY" 
+                                 value="#{basicInfoEdit.publisherDate}">
+                    <f:validateRegex pattern="[\d]{2}/[\d]{2}/[\d]{4}"/>
+                    </h:inputText>
+                    <h:message for="pubDate" style="color: red"/>        
+            </h:panelGrid>
+            
+             <!---This allow user to enter type of book-->
+             <h:outputText value = "Type of Book:" style ="color:green"/>
+             <h:panelGrid columns = "3" style="color:green">
+                 <h:selectOneRadio id="coverType" required="true"
+                                       requiredMessage = "Please select at least one type of book cover."
+                                       value="#{basicInfoEdit.coverType}">
+                     <f:selectItem itemValue="Paperback" itemLabel="PaperBack"/>
+                     <f:selectItem itemValue="Hardcover" itemLabel="Hardcover"/>
+                 </h:selectOneRadio>
+                 <h:message for="coverType" style="color: red"/> 
+            </h:panelGrid> 
+             
+             <!---This allow user to enter page--> 
+            <h:panelGrid columns = "3" style="color:green">
+                    <h:outputLabel value = "Pages:"/>
+                    <h:inputText id="pages" required="true"
+                                     requiredMessage = "Page number is required,must be in form NNN,NNN"
+                                     validatorMessage ="Invalid page number,must be in form NNN,NNN" 
+                                     value="#{basicInfoEdit.page}">
+                    <f:validateRegex pattern="[1-9]\d{0,2}(,\d{3})*"/>
+                    </h:inputText>
+                    <h:message for="pages" style="color: red"/> 
+            </h:panelGrid> 
+            
+            <!--This allow user to sent information-->
+            <h:commandButton id="confirm" value="Submit Book" action="#{basicInfoEdit.setStatus()}">
+            <f:setPropertyActionListener target="#{basicInfoEdit.title}" value="#{seachTitle.title}" />
+            </h:commandButton>
+          </h:form> 
         </div>
     </body>
 </html>
