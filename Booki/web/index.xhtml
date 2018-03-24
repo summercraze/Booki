@@ -16,7 +16,7 @@ This is the form where people could begin to search for book
             <h3> <h:outputLabel value = "Please enter your search below:" style="color:green"/></h3>
             
             <!---This let user to find book-->
-            <h:panelGrid columns = "2" style="color:green">
+            <h:panelGrid columns = "3" style="color:green">
                 <h:outputLabel value = "Title:"/>
                 <h:inputText id="title" 
                              required="true"
@@ -25,7 +25,7 @@ This is the form where people could begin to search for book
                              value="#{searchBooks.title}"> 
                 <f:validateLength minimum='3' maximum='1000'/>
                 </h:inputText>
-                <h:message for="title" style="color: red"/>
+                <h:message for="title" id="titleErrorMessage" style="color: red"/>
             </h:panelGrid>
             
             <!--Command button which find book-->

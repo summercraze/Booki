@@ -29,7 +29,7 @@ and open the template in the editor.
                                   required="true"
                                   requiredMessage = "Content page is required."
                                   style ="width:400px;height:70px" value="#{contentPageEdit.contentPage}"/>
-                 <h:message for="editableContent" style="color: red"/>
+                 <h:message for="editableContent" id="editableContentErrorMessage" style="color: red"/>
                  <h:commandButton id="confirm" value="Submit Changes" action="#{contentPageEdit.setStatus()}">
                   <f:setPropertyActionListener target="#{contentPageEdit.title}" value="#{seachTitle.title}" />
                  </h:commandButton>

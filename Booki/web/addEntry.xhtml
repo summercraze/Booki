@@ -30,7 +30,7 @@ by filling in appropriate information
                                  value="#{enterEntry.title}" >
                     <f:validateLength minimum='3' maximum='1000'/>
                     </h:inputText>
-                    <h:message for="title" style="color: red"/>
+                    <h:message for="title" id="titleErrorMessage" style="color: red"/>
                 </h:panelGrid>
                
                 <!-- This is the text area to enter subtitle -->
@@ -49,13 +49,13 @@ by filling in appropriate information
                                  value ="#{enterEntry.isbn}" >
                         <f:validateLength minimum='10' maximum='13'/>
                         </h:inputText>
-                       <h:message for="isbn" style="color: red"/>
+                       <h:message for="isbn" id="isbnErrorMessage" style="color: red"/>
                  </h:panelGrid>
                 
                 <!--This is the area to enter author.One author name is required
                  Length of the name would be checked.-->              
                 <h:outputText value = "Author:" style ="color:green"/>
-                <h:panelGrid columns = "6" style="color:green">
+                <h:panelGrid columns = "7" style="color:green">
                         <h:outputLabel value = "1."/>
                         <h:inputText id="author1" required="true"
                                  requiredMessage = "At least one author is required."
@@ -67,7 +67,7 @@ by filling in appropriate information
                         <h:inputText id="author2" value="#{enterEntry.author2}"/>
                         <h:outputLabel value = "3."/>
                         <h:inputText id="author3" value="#{enterEntry.author3}"/>
-                        
+                        <h:message for="author1" id="authorErrorMessage" style="color: red"/>      
                 </h:panelGrid>
                 
                 <!--This is the area to enter translator-->
@@ -86,7 +86,7 @@ by filling in appropriate information
                                  value="#{enterEntry.price}">
                         <f:validateRegex pattern="(([1-9]\d{0,2}(,\d{3})*)|(([1-9]\d*)?\d))(\.\d\d)?$"/>
                         </h:inputText>
-                        <h:message for="price" style="color: red"/>
+                        <h:message for="price" id="priceErrorMessage" style="color: red"/>
                 </h:panelGrid>
                
                  <!--This is the area to enter publisher,code would check the length of the publisher-->
@@ -98,7 +98,7 @@ by filling in appropriate information
                                  value="#{enterEntry.publisher}">
                         <f:validateLength minimum='3' maximum='500'/>
                         </h:inputText>
-                        <h:message for="publisher" style="color: red"/>                      
+                        <h:message for="publisher" id="pubErrorMessage" style="color: red"/>                      
                 </h:panelGrid>
                 
                 <!--This is the area to enter publishing date,
@@ -112,7 +112,7 @@ by filling in appropriate information
                                      value="#{enterEntry.publisherDate}">
                        <f:validateRegex pattern="[\d]{2}/[\d]{2}/[\d]{4}"/>
                        </h:inputText>
-                       <h:message for="pubDate" style="color: red"/>                  
+                       <h:message for="pubDate" id="pubDateErrorMessage" style="color: red"/>                  
                 </h:panelGrid>
                 
                 <!--This is the area to enter cover type,user must choose one type of cover-->
@@ -122,10 +122,10 @@ by filling in appropriate information
                                        required="true"
                                        requiredMessage = "Please select at least one type of book cover."
                                        value="#{enterEntry.coverType}">
-                         <f:selectItem itemValue="Paperback" itemLabel="PaperBack"/>
+                         <f:selectItem itemValue="Paperback" itemLabel="Paperback"/>
                          <f:selectItem itemValue="Hardcover" itemLabel="Hardcover"/>
                      </h:selectOneRadio>
-                     <h:message for="coverType" style="color: red"/>  
+                     <h:message for="coverType" id="coverTypeErrorMessage" style="color: red"/>  
                 </h:panelGrid> 
                
                 <!--This is the area to enter pages,must match pattern and would not start with 0-->
@@ -137,7 +137,7 @@ by filling in appropriate information
                                      value="#{enterEntry.page}">
                         <f:validateRegex pattern="[1-9]\d{0,2}(,\d{3})*"/>
                         </h:inputText>
-                        <h:message for="pages" style="color: red"/>  
+                        <h:message for="pages" id="pagesErrorMessage" style="color: red"/>  
                 </h:panelGrid> 
                  <!--This is the area to enter book information,user must enter info-->
                 <h:panelGrid columns = "3" style="color:green">
@@ -145,7 +145,7 @@ by filling in appropriate information
                         <h:inputTextarea id="aboutBook" required="true"
                                      requiredMessage = "Book information is required."
                                      style ="width:400px;height:70px" value="#{enterEntry.bookInfo}"/>
-                        <h:message for="aboutBook" style="color: red"/>  
+                        <h:message for="aboutBook" id="aboutBookErrorMessage" style="color: red"/>  
                 </h:panelGrid> 
                 <!--This is the area to enter author information-->
                 <h:panelGrid columns = "1" style="color:green">

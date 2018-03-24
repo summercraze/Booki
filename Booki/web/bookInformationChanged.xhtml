@@ -30,7 +30,7 @@ user view the book and click edit
              <h:inputTextarea id="editableContent" required="true"
                                  requiredMessage = "Book information is required."
                                  style ="width:400px;height:70px" value="#{bookInfoEdit.bookInfo}"/>
-             <h:message for="editableContent" style="color: red"/>
+             <h:message for="editableContent" id = "editableContentErrorMessage" style="color: red"/>
              </h:panelGrid> 
              
              <!--This allow user to confirm the change-->
