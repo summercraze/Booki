@@ -4,6 +4,10 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--
+This page confirm basic information change when user changed
+basic information
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
@@ -11,15 +15,20 @@ and open the template in the editor.
         <title>Basic Information Changed?</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
+    
     <body>
         <div>
             <h:form>
+            <!--This output the message whether the insert is successful-->
             <h2>
-              <h:outputFormat value="#{basicInfoEdit.getStatus()}"/>
+              <h:outputFormat escape ="false" style ="color:green"
+                              value="#{basicInfoEdit.getStatus()}"/>
             </h2>
-             <h:panelGrid columns = "1" style="color:green">
-                 <h:commandButton id="back" value="Back" action="index"/>
-             </h:panelGrid>    
+            
+            <!--Bring user to back to search-->
+            <h:panelGrid columns = "1">
+                 <h:commandButton id="back" value="Back To Search" action="index"/>
+            </h:panelGrid>    
         </h:form>
         </div>
     </body>

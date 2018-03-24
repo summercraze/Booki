@@ -4,6 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--This is the page to edit content page-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -15,18 +16,24 @@ and open the template in the editor.
     <body>
         <div>
             <h:form>
+            <!--This is the output of the title-->
             <h2>
              <h:panelGrid columns = "1" style="color:green">
-                 <h:outputFormat value="#{contentPageEdit.outputEdit()}">
-               </h:outputFormat>
-               </h:panelGrid>
-              </h2>
-                <h:panelGrid columns = "1" style="color:green">
-                 <h:inputTextarea id="editableContent" style ="width:400px;height:70px" value="#{contentPageEdit.contentPage}"/>
-                  <h:commandButton id="confirm" value="Submit Changes" action="#{contentPageEdit.setStatus()}">
-                <f:setPropertyActionListener target="#{contentPageEdit.title}" value="#{seachTitle.title}" />
-                </h:commandButton>
-                </h:panelGrid> 
+                 <h:outputFormat value="#{contentPageEdit.outputEdit()}"/>
+             </h:panelGrid>
+            </h2>
+            
+            <!--This shows the box to change content page -->
+            <h:panelGrid columns = "2">
+                 <h:inputTextarea id="editableContent" 
+                                  required="true"
+                                  requiredMessage = "Content page is required."
+                                  style ="width:400px;height:70px" value="#{contentPageEdit.contentPage}"/>
+                 <h:message for="editableContent" style="color: red"/>
+                 <h:commandButton id="confirm" value="Submit Changes" action="#{contentPageEdit.setStatus()}">
+                  <f:setPropertyActionListener target="#{contentPageEdit.title}" value="#{seachTitle.title}" />
+                 </h:commandButton>
+            </h:panelGrid> 
                  </h:form>
         </div>
     </body>

@@ -4,6 +4,10 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!--
+This change the information of the book after
+user view the book and click edit
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -15,19 +19,25 @@ and open the template in the editor.
     <body>
         <div>
              <h:form>
-            <h2>
-             <h:panelGrid columns = "1" style="color:green">
-                 <h:outputFormat value="#{bookInfoEdit.outputEdit()}">
-               </h:outputFormat>
+             <!--This output the title and basic information-->
+             <h2>
+               <h:panelGrid columns = "1" style="color:green" >
+                 <h:outputFormat value="#{bookInfoEdit.outputEdit()}"/>
                </h:panelGrid>
-              </h2>
-                <h:panelGrid columns = "1" style="color:green">
-                 <h:inputTextarea id="editableContent" style ="width:400px;height:70px" value="#{bookInfoEdit.bookInfo}"/>
-                  <h:commandButton id="confirm" value="Submit Changes" action="#{bookInfoEdit.setStatus()}">
-                <f:setPropertyActionListener target="#{bookInfoEdit.title}" value="#{seachTitle.title}" />
-                </h:commandButton>
-                </h:panelGrid> 
-                 </h:form>
+             </h2>
+             <!--This allow user to update the book-->
+             <h:panelGrid columns = "1" >
+             <h:inputTextarea id="editableContent" required="true"
+                                 requiredMessage = "Book information is required."
+                                 style ="width:400px;height:70px" value="#{bookInfoEdit.bookInfo}"/>
+             <h:message for="editableContent" style="color: red"/>
+             </h:panelGrid> 
+             
+             <!--This allow user to confirm the change-->
+             <h:commandButton id="confirm" value="Submit Changes" action="#{bookInfoEdit.setStatus()}">                
+             <f:setPropertyActionListener target="#{bookInfoEdit.title}" value="#{seachTitle.title}" />
+             </h:commandButton>          
+             </h:form>
         </div>
     </body>
 </html>
